@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -9,18 +10,59 @@
 
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
 </head>
 <body>
-<!-- Small modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>
-
-<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+<!-- Button trigger modal -->
+<div style="text-align: center;">
+	<button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal" style="margin-top: 10%;" id="click-here">
+	  Click here
+	</button>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
-      ...
+      <div class="modal-body" style="text-align: center; margin-top: 30px ">
+        Anh có yêu em không ?
+      </div>
+      <button type="button" class="btn btn-default" data-dismiss="modal" id="button-close" style="display: none;">ĐÉO!</button>
+      <div class="modal-footer" style="text-align: center;">
+        <button type="button" class="btn btn-primary" onclick="window.location.href = 'https://www.facebook.com/tran.lananh.9277'">Đồng ý</button>
+      </div>
     </div>
   </div>
 </div>
+<style type="text/css">
+	#button-close {
+		position:fixed;
+	}
+</style>
+<script type="text/javascript">
+	$("#click-here").click(function(){
+		$("#button-close").attr('style', 'display: block;');
+    	animateDiv();
+    
+	});
+
+function makeNewPosition(){
+    
+    // Get viewport dimensions (remove the dimension of the div)
+    var h = $("#myModal").height() - 100;
+    var w = $("#myModal").width() - 100;
+    
+    var nh = Math.floor(Math.random() * h);
+    var nw = Math.floor(Math.random() * w);
+    
+    return [nh,nw];    
+    
+}
+
+	function animateDiv(){
+	    var newq = makeNewPosition();
+	    $('#button-close').animate({ top: newq[0], left: newq[1] - 500 }, 250, function(){
+	    	animateDiv();        
+		});
+	};
+</script>
 </body>
-</html>
+</html>	
